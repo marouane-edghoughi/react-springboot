@@ -1,0 +1,10 @@
+.avatar {
+    height: 40px;
+    width: 40px;
+    padding: 8px;
+    margin: 0 auto;
+    background-color: grey;
+    color: honeydew;
+    border-radius: 50px;
+    font-weight: 400;
+}

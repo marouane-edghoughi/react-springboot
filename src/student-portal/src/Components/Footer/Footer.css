@@ -1,0 +1,19 @@
+.footer-bar {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: blueviolet;
+    position: fixed;
+    bottom: 0;
+}
+
+.students-number {
+    display: inline-block;
+    color: white;
+    background-color: tomato;
+    border-radius: 25px;
+    margin-right: 1rem;
+    width: 40px;
+    height: 40px;
+    padding: 8px 5px;
+    font-weight: 400;
+}
