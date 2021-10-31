@@ -35,7 +35,7 @@ function Dashboard() {
   const fetchStudents = () => {
     setIsFetching(true);
     getAllStudents().then(response => {
-      console.log(response.data);
+      console.table(response.data);
       setStudents(response.data);
       setIsFetching(false);
     });
@@ -66,7 +66,7 @@ function Dashboard() {
             </thead>
             
             <tbody>
-              { students.map((student, index) => {
+              {students.map((student, index) => {
                 return (
                   <tr key={index}>
                     <td><Avatar firstName={student.firstName} lastName={student.lastName}/></td>

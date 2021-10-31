@@ -23,7 +23,7 @@ function AddStudentModal(props) {
                 <AddStudentForm />
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={props.onHide}>
+                <Button style={{marginRight: '6rem'}} variant="danger" onClick={props.onHide}>
                     Close
                 </Button>
             </Modal.Footer>

@@ -1,0 +1,17 @@
+.field-error {
+    width: fit-content;
+    color: brown;
+    background-color: burlywood;
+    font-size: 0.8rem;
+    padding: 2px 10px;
+    border-radius: 5px;
+    margin-top: -5px;
+    margin-bottom: 5px;
+}
+
+.add-std-btn {
+    position: absolute;
+    right: 0;
+    margin-right: 15px;
+    bottom: -55px;
+}
