@@ -1,13 +1,14 @@
 import { Formik } from 'formik';
-
 import {
     Form,
     Button
 } from 'react-bootstrap';
 
+import { addNewStudent } from '../../client';
+
 import './AddStudentForm.css';
 
-function AddStudentForm() {
+function AddStudentForm(props) {
 
     return(
         <Formik
@@ -37,11 +38,11 @@ function AddStudentForm() {
                 }
                 return errors;
             }}
-            onSubmit={(values, { setSubmitting }) => {
-                setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
+            onSubmit={(student, { setSubmitting }) => {
+                addNewStudent(student).then(() => {
                     setSubmitting(false);
-                }, 400);
+                    props.onSuccess();
+                });
             }}
         >
             {({

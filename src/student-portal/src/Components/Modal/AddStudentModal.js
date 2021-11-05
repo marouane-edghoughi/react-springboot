@@ -20,7 +20,7 @@ function AddStudentModal(props) {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <AddStudentForm />
+                <AddStudentForm onSuccess={props.onSuccess} />
             </Modal.Body>
             <Modal.Footer>
                 <Button style={{marginRight: '6rem'}} variant="danger" onClick={props.onHide}>

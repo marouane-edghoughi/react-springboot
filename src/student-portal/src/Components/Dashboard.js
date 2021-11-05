@@ -10,6 +10,16 @@ import {
 import Wrapper from './Wrapper';
 import Avatar from './Avatar/Avatar';
 import AddStudentModal from './Modal/AddStudentModal';
+import {
+  // eslint-disable-next-line
+  SuccessNotification,
+  // eslint-disable-next-line
+  InfosNotification,
+  // eslint-disable-next-line
+  WarningNotification,
+  // eslint-disable-next-line
+  ErrorNotification
+} from './Notification/Notification';
 import Footer from './Footer/Footer';
 
 function Dashboard() {
@@ -34,9 +44,19 @@ function Dashboard() {
 
   const fetchStudents = () => {
     setIsFetching(true);
-    getAllStudents().then(response => {
-      console.table(response.data);
+    getAllStudents()
+    .then(response => {
+      console.log(response.data);
       setStudents(response.data);
+      setIsFetching(false);
+    })
+    .catch(error => {
+      <ErrorNotification 
+        notificationMessage={error.error}
+        notificationTimestamp={error.error}
+        notificationDescription={error}
+      />
+      console.log(error);
       setIsFetching(false);
     });
   }
@@ -84,13 +104,32 @@ function Dashboard() {
         <AddStudentModal
           show={showModal}
           onHide={() => hideStudentModal()}
+          onSuccess={() => {
+            hideStudentModal();
+            fetchStudents();
+          }}
         />
         <Footer showAddStudentModal={() => showStudentModal()} numberOfStudents={students.length} />
       </>
     );
   }
   
-  return <div>No Students found</div>
+  return (
+    <>
+      <Wrapper>
+        <h1>No Students Found</h1>
+      </Wrapper>
+      <AddStudentModal
+        show={showModal}
+        onHide={() => hideStudentModal()}
+        onSuccess={() => {
+          hideStudentModal();
+          fetchStudents();
+        }}
+      />
+      <Footer showAddStudentModal={() => showStudentModal()} numberOfStudents={students.length} />
+    </>
+  );
 }
 
 export default Dashboard;

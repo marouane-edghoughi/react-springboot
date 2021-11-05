@@ -7,7 +7,7 @@ function Footer(props) {
     return(
         <>
             <div className="footer-bar justify-content-center text-center" >
-                {props.numberOfStudents && 
+                {props.numberOfStudents !== undefined && 
                     <div className="students-number">
                         {props.numberOfStudents}
                     </div>

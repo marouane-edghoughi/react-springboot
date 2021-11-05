@@ -1,0 +1,25 @@
+.notification {
+    z-index: 2;
+}
+
+.icon {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-right: 0.8rem;
+}
+
+.success {
+    color: green;
+}
+
+.infos {
+    color: cornflowerblue;
+}
+
+.warning {
+    color: yellowgreen;
+}
+
+.error {
+    color: red;
+}
