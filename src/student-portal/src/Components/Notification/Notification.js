@@ -41,20 +41,16 @@ const Notification = (props) => {
     );
 }
 
-export const SuccessNotification = (props) => {
+export const SuccessNotification = (message, timestamp, description) => {
 
-    const successIcon = 
-        <FaRegCheckCircle 
-            className="icon success"
-        />
-    ;
+    const successIcon = <FaRegCheckCircle className="icon success"/>;
 
     return (
         <Notification
             notificationIcon={successIcon}
-            notificationMessage={props.notificationMessage}
-            notificationTimestamp={props.notificationTimestamp}
-            notificationDescription={props.notificationDescription}
+            notificationMessage={message}
+            notificationTimestamp={timestamp}
+            notificationDescription={description}
         />
     );
 }

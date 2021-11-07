@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 
-import { getAllStudents } from '../client';
+import { 
+  getAllStudents, 
+  deleteStudent
+} from '../client';
 
 import { 
   Table,
@@ -10,6 +13,7 @@ import {
 import Wrapper from './Wrapper';
 import Avatar from './Avatar/Avatar';
 import AddStudentModal from './Modal/AddStudentModal';
+import Action from './Action/Action';
 import {
   // eslint-disable-next-line
   SuccessNotification,
@@ -21,6 +25,7 @@ import {
   ErrorNotification
 } from './Notification/Notification';
 import Footer from './Footer/Footer';
+import EditStudentModal from './Modal/EditStudentModal';
 
 function Dashboard() {
 
@@ -28,14 +33,24 @@ function Dashboard() {
 
   const [isFetching, setIsFetching] = useState(false);
 
-  const [showModal, setShowModal] = useState(false);
+  const [showAddStudentModal, setShowAddStudentModal] = useState(false);
 
-  const showStudentModal = () => {
-    setShowModal(true);
+  const [showEditStudentModal, setShowEditStudentModal] = useState(false);
+
+  const toggleAddStudentModal = () => {
+    setShowAddStudentModal(true);
   }
 
-  const hideStudentModal = () => {
-    setShowModal(false);
+  const hideAddStudentModal = () => {
+    setShowAddStudentModal(false);
+  }
+
+  const toggleEditStudentModal = () => {
+    setShowEditStudentModal(true);
+  }
+
+  const hideEditStudentModal = () => {
+    setShowEditStudentModal(false);
   }
 
   useEffect(() => {
@@ -51,12 +66,12 @@ function Dashboard() {
       setIsFetching(false);
     })
     .catch(error => {
-      <ErrorNotification 
-        notificationMessage={error.error}
-        notificationTimestamp={error.error}
-        notificationDescription={error}
-      />
-      console.log(error);
+      const message = error.response.data.message;
+      const description = error.response.data.httpStatus;
+      SuccessNotification(message, 'just now', description);
+      console.log(error.response.data);
+    })
+    .finally(() => {
       setIsFetching(false);
     });
   }
@@ -77,11 +92,11 @@ function Dashboard() {
             <thead>
               <tr>
                 <th></th>
-                <th>Student ID</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
                 <th>Gender</th>
+                <th>Action</th>
               </tr>
             </thead>
             
@@ -90,11 +105,25 @@ function Dashboard() {
                 return (
                   <tr key={index}>
                     <td><Avatar firstName={student.firstName} lastName={student.lastName}/></td>
-                    <td>{student.studentId}</td>
                     <td>{student.firstName}</td>
                     <td>{student.lastName}</td>
                     <td><a href={"mailto:" + student.email}>{student.email}</a></td>
                     <td>{student.gender}</td>
+                    <td>
+                      <Action 
+                        deleteStudent={() => {
+                          deleteStudent(student.studentId)
+                          .then(() => {
+                            fetchStudents();
+                          })
+                          .catch((error) => {
+                            console.log(error);
+                          });
+                        }} 
+                        studentFullName={student.firstName + ' ' + student.lastName}
+                        showEditStudentModal={() => toggleEditStudentModal()}
+                      />
+                    </td>
                   </tr>
                 );
               })}
@@ -102,14 +131,22 @@ function Dashboard() {
           </Table>
         </Wrapper>
         <AddStudentModal
-          show={showModal}
-          onHide={() => hideStudentModal()}
+          show={showAddStudentModal}
+          onHide={() => hideAddStudentModal()}
           onSuccess={() => {
-            hideStudentModal();
+            hideAddStudentModal();
             fetchStudents();
           }}
         />
-        <Footer showAddStudentModal={() => showStudentModal()} numberOfStudents={students.length} />
+        <EditStudentModal 
+          show={showEditStudentModal}
+          onHide={() => hideEditStudentModal()}
+          onSuccess={() => {
+            hideEditStudentModal();
+            fetchStudents();
+          }}
+        />
+        <Footer showAddStudentModal={() => toggleAddStudentModal()} numberOfStudents={students.length} />
       </>
     );
   }
@@ -120,14 +157,14 @@ function Dashboard() {
         <h1>No Students Found</h1>
       </Wrapper>
       <AddStudentModal
-        show={showModal}
-        onHide={() => hideStudentModal()}
+        show={showAddStudentModal}
+        onHide={() => hideAddStudentModal()}
         onSuccess={() => {
-          hideStudentModal();
+          hideAddStudentModal();
           fetchStudents();
         }}
       />
-      <Footer showAddStudentModal={() => showStudentModal()} numberOfStudents={students.length} />
+      <Footer showAddStudentModal={() => toggleAddStudentModal()} numberOfStudents={students.length} />
     </>
   );
 }

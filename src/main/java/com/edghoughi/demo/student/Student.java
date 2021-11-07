@@ -1,12 +1,15 @@
 package com.edghoughi.demo.student;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.lang.NonNull;
 
 import java.util.UUID;
 
 public class Student {
 
     private final UUID studentId;
+    // Add Java Bean Validation Annotations (Add dependency in pom.xml)
+    
     private final String firstName;
     private final String lastName;
     private final String email;
