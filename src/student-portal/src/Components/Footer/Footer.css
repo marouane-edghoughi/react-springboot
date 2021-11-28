@@ -1,7 +1,7 @@
 .footer-bar {
     width: 100%;
     padding: 0.5rem;
-    background-color: blueviolet;
+    background-color: rgba(236, 240, 241, 0.8);
     position: fixed;
     bottom: 0;
 }
@@ -9,7 +9,7 @@
 .students-number {
     display: inline-block;
     color: white;
-    background-color: tomato;
+    background-color: #e67e22;
     border-radius: 25px;
     margin-right: 1rem;
     width: 40px;

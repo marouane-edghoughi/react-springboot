@@ -16,14 +16,17 @@ function EditStudentModal(props) {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter" >
-                    Edit student: <strong>{props.studentFullName}</strong>
+                    Edit student: <strong>{props.selectedStudent.firstName + ' ' + props.selectedStudent.lastName}</strong>
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <EditStudentForm onSuccess={props.onSuccess} />
+                <EditStudentForm
+                    selectedStudent={props.selectedStudent}
+                    onSuccess={props.onSuccess}
+                />
             </Modal.Body>
             <Modal.Footer>
-                <Button style={{marginRight: '6rem'}} variant="danger" onClick={props.onHide}>
+                <Button style={{marginRight: '4.8rem'}} variant="danger" onClick={props.onHide}>
                     Close
                 </Button>
             </Modal.Footer>

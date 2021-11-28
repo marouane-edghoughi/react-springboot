@@ -53,6 +53,8 @@ function AddStudentForm(props) {
                 handleBlur,
                 setFieldValue,
                 handleSubmit,
+                isValid,
+                dirty,
                 isSubmitting
                 /* and other goodies */
             }) => (

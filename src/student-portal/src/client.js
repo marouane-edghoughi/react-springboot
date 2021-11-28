@@ -17,10 +17,18 @@ export const getAllStudents = () =>
     axios.get('api/students')
     .then(checkStatus);
 
+export const getStudentById = (studentId) =>
+    axios.get('api/students/' + studentId)
+    .then(checkStatus);
+
 export const addNewStudent = (student) => 
     axios.post('api/students', student)
     .then(checkStatus);
 
 export const deleteStudent = (studentId) =>
     axios.delete('api/students/' + studentId)
+    .then(checkStatus);
+
+export const updateStudent = (studentId, student) =>
+    axios.put('api/students/' + studentId, student)
     .then(checkStatus);

@@ -2,11 +2,9 @@ import './Navbar.css';
 
 function Navbar() {
     return(
-        <>
-            <nav className="sticky-top navbar">
-                <h2>Student Portal</h2>
-            </nav>  
-        </>
+        <nav className="sticky-top navbar">
+            <span className="logo">Students Manager</span>
+        </nav>
     );
 }
 

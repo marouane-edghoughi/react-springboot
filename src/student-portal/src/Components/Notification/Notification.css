@@ -1,5 +1,5 @@
 .notification {
-    z-index: 2;
+    z-index: 6;
 }
 
 .icon {
@@ -9,17 +9,17 @@
 }
 
 .success {
-    color: green;
+    color: #2ecc71;
 }
 
 .infos {
-    color: cornflowerblue;
+    color: #2980b9;
 }
 
 .warning {
-    color: yellowgreen;
+    color: #e67e22;
 }
 
 .error {
-    color: red;
+    color: #e74c3c;
 }

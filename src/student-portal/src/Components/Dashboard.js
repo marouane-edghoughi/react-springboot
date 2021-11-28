@@ -31,6 +31,8 @@ function Dashboard() {
 
   const [students, setStudents] = useState([]);
 
+  const [selectedStudent, setSelectedStudent] = useState({});
+
   const [isFetching, setIsFetching] = useState(false);
 
   const [showAddStudentModal, setShowAddStudentModal] = useState(false);
@@ -45,7 +47,8 @@ function Dashboard() {
     setShowAddStudentModal(false);
   }
 
-  const toggleEditStudentModal = () => {
+  const toggleEditStudentModal = (selectedStudent) => {
+    setSelectedStudent(selectedStudent);
     setShowEditStudentModal(true);
   }
 
@@ -66,10 +69,10 @@ function Dashboard() {
       setIsFetching(false);
     })
     .catch(error => {
-      const message = error.response.data.message;
-      const description = error.response.data.httpStatus;
-      SuccessNotification(message, 'just now', description);
-      console.log(error.response.data);
+      // const message = error.response.data.message;
+      // const description = error.response.data.httpStatus;
+      // SuccessNotification(message, 'just now', description);
+      console.log(error.response);
     })
     .finally(() => {
       setIsFetching(false);
@@ -119,9 +122,9 @@ function Dashboard() {
                           .catch((error) => {
                             console.log(error);
                           });
-                        }} 
+                        }}
                         studentFullName={student.firstName + ' ' + student.lastName}
-                        showEditStudentModal={() => toggleEditStudentModal()}
+                        showEditStudentModal={() => toggleEditStudentModal(student)}
                       />
                     </td>
                   </tr>
@@ -130,19 +133,20 @@ function Dashboard() {
             </tbody>
           </Table>
         </Wrapper>
+        <EditStudentModal 
+          selectedStudent={selectedStudent}
+          show={showEditStudentModal}
+          onHide={() => hideEditStudentModal()}
+          onSuccess={() => {
+            hideEditStudentModal();
+            fetchStudents();
+          }}
+        />
         <AddStudentModal
           show={showAddStudentModal}
           onHide={() => hideAddStudentModal()}
           onSuccess={() => {
             hideAddStudentModal();
-            fetchStudents();
-          }}
-        />
-        <EditStudentModal 
-          show={showEditStudentModal}
-          onHide={() => hideEditStudentModal()}
-          onSuccess={() => {
-            hideEditStudentModal();
             fetchStudents();
           }}
         />

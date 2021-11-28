@@ -1,6 +1,19 @@
 .navbar {
-    border-bottom: 1px solid #808080;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 5rem;
+    padding-right: 5rem;
     margin-bottom: 2rem;
-    background-color: honeydew;
-    z-index: 1 !important;
+    height: 3.5rem;
+    background-color: rgba(236, 240, 241, 0.8);
+    border-bottom: 1px solid #bdc3c7;
+    z-index: 5 !important;
+}
+
+.logo {
+    position: absolute;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2c3e50;
 }

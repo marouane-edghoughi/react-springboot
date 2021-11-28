@@ -1,9 +1,10 @@
 .field-error {
     width: fit-content;
-    color: brown;
-    background-color: burlywood;
+    color: #e74c3c;
+    background-color: rgba(231, 76, 60, 0.02);
     font-size: 0.8rem;
     padding: 2px 10px;
+    border: 1px solid #e74c3c;
     border-radius: 5px;
     margin-top: -5px;
     margin-bottom: 5px;

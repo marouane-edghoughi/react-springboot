@@ -4,6 +4,8 @@ import {
     Button, OverlayTrigger, Popover
 } from 'react-bootstrap';
 
+import { RiErrorWarningFill } from 'react-icons/ri';
+
 import './Action.css';
 
 function Action(props) {
@@ -18,7 +20,10 @@ function Action(props) {
                 placement="top-end"
                 overlay={
                     <Popover className="delete-popover">
-                        <p>Are you sure you want to delete <strong>{props.studentFullName}</strong>?</p>
+                        <div className="action-msg">
+                            <RiErrorWarningFill className="msg-icon" />
+                            <p>Are you sure you want to delete <strong>{props.studentFullName}</strong>?</p>
+                        </div>
                         <div className="action-btn">
                             <Button
                                 className="action"
@@ -48,8 +53,10 @@ function Action(props) {
                     </Button>
             </OverlayTrigger>
             <Button 
-                variant="primary" 
-                onClick={props.showEditStudentModal}
+                variant="primary"
+                onClick={() => {
+                    props.showEditStudentModal();
+                }}
             >
                 Edit
             </Button>

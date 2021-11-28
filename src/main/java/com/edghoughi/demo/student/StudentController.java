@@ -24,6 +24,11 @@ public class StudentController {
         return studentService.getAllStudents();
     }
 
+    @GetMapping(path = "{studentId}")
+    public Student getStudentById(@PathVariable UUID studentId) {
+        return studentService.getStudentById(studentId);
+    }
+
     @PostMapping
     public void addNewStudent(@RequestBody Student student) {
         studentService.addNewStudent(student);
@@ -32,5 +37,10 @@ public class StudentController {
     @DeleteMapping(path = "{studentId}")
     public int deleteStudent(@PathVariable("studentId") UUID studentId) {
         return studentService.deleteStudent(studentId);
+    }
+
+    @PutMapping(path = "{studentId}")
+    public void updateStudent(@PathVariable("studentId") UUID studentId, @RequestBody Student student) {
+        studentService.updateStudent(studentId, student);
     }
 }

@@ -24,6 +24,10 @@ public class StudentService {
         return studentDAO.selectAllStudents();
     }
 
+    Student getStudentById(UUID studentId) {
+        return studentDAO.selectStudentById(studentId);
+    }
+
     void addNewStudent(Student student) {
         addNewStudent(null, student);
     }
@@ -38,6 +42,10 @@ public class StudentService {
         // TODO: Verify that email is not taken
 
         studentDAO.insertStudent(newStudentId, student);
+    }
+
+    void updateStudent(UUID studentId, Student student) {
+        studentDAO.updateStudent(studentId, student);
     }
 
     int deleteStudent(UUID studentId) {

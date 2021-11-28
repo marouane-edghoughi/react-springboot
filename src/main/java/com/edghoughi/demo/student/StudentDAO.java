@@ -26,9 +26,28 @@ public class StudentDAO {
                 " last_name, " +
                 " email, " +
                 " gender " +
-                "FROM student";
+                "FROM student " +
+                "ORDER BY last_name";
         // Convert database student table to a java object
         return jdbcTemplate.query(sql, mapStudentFromDb());
+    }
+
+    Student selectStudentById(UUID studentId) {
+        String sql = "" +
+                "SELECT " +
+                " student_id, " +
+                " first_name, " +
+                " last_name, " +
+                " email, " +
+                " gender " +
+                "FROM student " +
+                "WHERE student_id = ?";
+
+        return jdbcTemplate.queryForObject(
+                sql,
+                mapStudentFromDb(),
+                studentId
+        );
     }
 
     int insertStudent(UUID studentId, Student student) {
@@ -70,6 +89,24 @@ public class StudentDAO {
                     gender
             );
         };
+    }
+
+    int updateStudent(UUID studentId, Student student) {
+        String sql = "" +
+                "UPDATE student " +
+                "SET " +
+                " first_name = ?, " +
+                " last_name = ?, " +
+                " email = ? " +
+                "WHERE student_id = ?";
+
+        return jdbcTemplate.update(
+                sql,
+                student.getFirstName(),
+                student.getLastName(),
+                student.getEmail(),
+                studentId
+        );
     }
 
     int removeStudent(UUID studentId) {

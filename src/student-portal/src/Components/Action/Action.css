@@ -1,6 +1,18 @@
 .delete-popover {
-    width: fit-content;
+    min-width: fit-content;
     padding: 10px 20px;
+    z-index: 6 !important;
+}
+
+.msg-icon {
+    color: #f39c12;
+    font-size: 1.2rem;
+    margin-right: 0.3rem;
+    margin-top: 0.1rem;
+}
+
+.action-msg {
+    display: flex;
 }
 
 .action-btn {
