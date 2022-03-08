@@ -10,22 +10,18 @@ import {
   Spinner
 } from 'react-bootstrap';
 
-import Wrapper from './Wrapper';
-import Avatar from './Avatar/Avatar';
-import AddStudentModal from './Modal/AddStudentModal';
-import Action from './Action/Action';
+import Wrapper from '../Components/Wrapper';
+import Avatar from '../Components/Avatar/Avatar';
+import AddStudentModal from '../Components/Modal/AddStudentModal';
+import Action from '../Components/Action/Action';
 import {
-  // eslint-disable-next-line
   SuccessNotification,
-  // eslint-disable-next-line
   InfosNotification,
-  // eslint-disable-next-line
   WarningNotification,
-  // eslint-disable-next-line
   ErrorNotification
-} from './Notification/Notification';
-import Footer from './Footer/Footer';
-import EditStudentModal from './Modal/EditStudentModal';
+} from '../Components/Notification/Notification';
+import Footer from '../Components/Footer/Footer';
+import EditStudentModal from '../Components/Modal/EditStudentModal';
 
 function Dashboard() {
 
@@ -34,6 +30,8 @@ function Dashboard() {
   const [selectedStudent, setSelectedStudent] = useState({});
 
   const [isFetching, setIsFetching] = useState(false);
+
+  let errors = {};
 
   const [showAddStudentModal, setShowAddStudentModal] = useState(false);
 
@@ -69,13 +67,16 @@ function Dashboard() {
       setIsFetching(false);
     })
     .catch(error => {
-      // const message = error.response.data.message;
-      // const description = error.response.data.httpStatus;
-      // SuccessNotification(message, 'just now', description);
-      console.log(error.response);
+      errors.message = error.response.data.message;
+      errors.description = error.response.data.httpStatus;
+      errors.timestamp = error.response.data.timestamp;
+      console.log(error.response.data);
     })
     .finally(() => {
       setIsFetching(false);
+      if (errors) {
+        SuccessNotification(errors.message, errors.description, errors.timestamp);
+      }
     });
   }
 
@@ -133,7 +134,7 @@ function Dashboard() {
             </tbody>
           </Table>
         </Wrapper>
-        <EditStudentModal 
+        <EditStudentModal
           selectedStudent={selectedStudent}
           show={showEditStudentModal}
           onHide={() => hideEditStudentModal()}

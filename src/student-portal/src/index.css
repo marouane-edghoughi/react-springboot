@@ -16,3 +16,23 @@ code {
 .students-table {
   margin-bottom: 5rem;
 }
+
+
+/**
+  *   Login Page
+**/
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 40px;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+  background-color: #FAFAFB;
+  border-radius: 10px;
+}
+
+.form {
+  width: 400px;
+}

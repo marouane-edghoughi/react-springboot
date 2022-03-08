@@ -39,7 +39,7 @@ public class StudentService {
 //        if (!emailValidator.test(student.getEmail())) {
 //            throw new ApiRequestException(student.getEmail() + " is not Valid");
 //        }
-        // TODO: Verify that email is not taken
+        // TODO: Verify that the email is unique
 
         studentDAO.insertStudent(newStudentId, student);
     }

@@ -1,5 +1,6 @@
 import Navbar from './Components/Navbar/Navbar';
-import Dashboard from "./Components/Dashboard";
+import Dashboard from './Pages/Dashboard';
+import LoginPage from './Pages/LoginPage';
 
 
 function App() {
@@ -7,7 +8,7 @@ function App() {
   return(
     <>
       <Navbar />
-      <Dashboard />
+      <LoginPage />
     </>
   );
 }
